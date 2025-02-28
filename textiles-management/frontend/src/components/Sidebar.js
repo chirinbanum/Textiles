@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaTachometerAlt, FaBoxOpen, FaShoppingCart, FaUsers, FaClipboardList, FaChartBar, FaCog, FaSignOutAlt } from "react-icons/fa";
 import "../css/Admin.css";
 
 const Sidebar = () => {
@@ -7,14 +8,14 @@ const Sidebar = () => {
     <div className="sidebar">
       <h2>Admin Panel</h2>
       <ul>
-        <li><Link to="/admin">Dashboard Overview</Link></li>
-        <li><Link to="/manage-products">Manage Products</Link></li>
-        <li><Link to="/orders">Order Management</Link></li>
-        <li><Link to="/users">User Management</Link></li>
-        <li><Link to="/inventory">Category & Inventory</Link></li>
-        <li><Link to="/reports">View Reports</Link></li>
-        <li><Link to="/settings">Settings</Link></li>
-        <li><Link to="/">Logout</Link></li>
+        <li><Link to="/admin"><FaTachometerAlt className="icon dashboard-icon" /> Dashboard Overview</Link></li>
+        <li><Link to="/manage-products"><FaBoxOpen className="icon products-icon" /> Manage Products</Link></li>
+        <li><Link to="/orders"><FaShoppingCart className="icon orders-icon" /> Order Management</Link></li>
+        <li><Link to="/users"><FaUsers className="icon users-icon" /> User Management</Link></li>
+        <li><Link to="/inventory"><FaClipboardList className="icon inventory-icon" /> Category & Inventory</Link></li>
+        <li><Link to="/reports"><FaChartBar className="icon reports-icon" /> View Reports</Link></li>
+        <li><Link to="/settings"><FaCog className="icon settings-icon" /> Settings</Link></li>
+        <li><Link to="/"><FaSignOutAlt className="icon logout-icon" /> Logout</Link></li>
       </ul>
     </div>
   );

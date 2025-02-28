@@ -28,8 +28,11 @@ const AdminHome = () => {
       <Sidebar />
       <div className="admin-content">
         <h2>Welcome to Admin Dashboard</h2>
-        <p>Select an option from the sidebar to manage the eCommerce store.</p>
-        <button onClick={handleLogout} className="logout-button">Logout</button>
+        <p>Manage products, users, orders, and more.</p>
+        
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
       </div>
     </div>
   );

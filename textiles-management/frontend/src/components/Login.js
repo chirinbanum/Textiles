@@ -15,17 +15,15 @@ const Login = () => {
         password,
       });
 
-      // Store token and role in localStorage
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
 
       alert("Login Successful!");
 
-      // Redirect to the correct page based on role
       if (res.data.role === "admin") {
-        navigate("/AdminHome");  // Changed from "/admin" to match AdminHome.js
+        navigate("/AdminHome");
       } else {
-        navigate("/user");
+        navigate("/UserHome");
       }
     } catch (error) {
       alert(error.response?.data?.message || "Login failed!");
