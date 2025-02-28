@@ -3,7 +3,8 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import AdminHome from "./components/AdminHome";
 import UserHome from "./components/UserHome";
-import ManageProducts from "./components/AdminHome/ManageProducts";  // ✅ Import the missing component
+import ManageProducts from "./components/AdminHome/ManageProducts";
+import EditProduct from "./components/AdminHome/EditProduct";  // ✅ Import EditProduct.js
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/AdminHome" element={<AdminHome />} />
         <Route path="/UserHome" element={<UserHome />} />
-        <Route path="/manage-products" element={<ManageProducts />} /> {/* ✅ Now it will work */}
+        <Route path="/manage-products" element={<ManageProducts />} />
+        <Route path="/edit-product/:productId" element={<EditProduct />} /> {/* ✅ Add EditProduct route */}
       </Routes>
     </Router>
   );

@@ -1,44 +1,64 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../css/AddProduct.css";
 
-const AddProduct = ({ setShowAddForm, setProducts }) => {
+const AddProduct = () => {
     const [product, setProduct] = useState({
         name: "",
-        category: "",
+        description: "",
         price: "",
         stock: "",
-        imageUrl: ""
+        imageUrl: "",
     });
 
-    // Handle input change
     const handleChange = (e) => {
-        setProduct({ ...product, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setProduct({ ...product, [name]: value });
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("/api/products", product);
-            setProducts(prev => [...prev, response.data]); // Update UI
-            setShowAddForm(false); // Close form
+            const response = await axios.post("http://localhost:5000/api/products/add", product);
+            alert(response.data.message);
+            setProduct({ name: "", description: "", price: "", stock: "", imageUrl: "" });
         } catch (error) {
             console.error("Error adding product:", error);
         }
     };
 
     return (
-        <div className="add-product-form">
-            <h3>Add New Product</h3>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="Product Name" value={product.name} onChange={handleChange} required />
-                <input type="text" name="category" placeholder="Category" value={product.category} onChange={handleChange} required />
-                <input type="number" name="price" placeholder="Price" value={product.price} onChange={handleChange} required />
-                <input type="number" name="stock" placeholder="Stock Quantity" value={product.stock} onChange={handleChange} required />
-                <input type="text" name="imageUrl" placeholder="Image URL" value={product.imageUrl} onChange={handleChange} required />
+        <div className="add-product-container">
+            <h2>Add Product</h2>
+            <form className="add-product-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" value={product.name} onChange={handleChange} required />
+                </div>
 
-                <button type="submit">Add Product</button>
-                <button type="button" onClick={() => setShowAddForm(false)}>Cancel</button>
+                <div className="form-group">
+                    <label>Description</label>
+                    <textarea name="description" value={product.description} onChange={handleChange} required />
+                </div>
+
+                <div className="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" value={product.price} onChange={handleChange} required />
+                </div>
+
+                <div className="form-group">
+                    <label>Stock</label>
+                    <input type="number" name="stock" value={product.stock} onChange={handleChange} required />
+                </div>
+
+                <div className="form-group">
+                    <label>Image URL</label>
+                    <input type="text" name="imageUrl" value={product.imageUrl} onChange={handleChange} />
+                </div>
+
+                <div className="button-group">
+                    <button type="submit" className="btn-primary">Add Product</button>
+                </div>
             </form>
         </div>
     );

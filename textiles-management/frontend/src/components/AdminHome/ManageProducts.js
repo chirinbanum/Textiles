@@ -1,76 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../../css/ManageProducts.css";
 import AddProduct from "./AddProduct";
-import EditProduct from "./EditProduct";
+import EditProduct from "./EditProduct"; // Import EditProduct component
 
 const ManageProducts = () => {
+    const [activePage, setActivePage] = useState("add");
     const [products, setProducts] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false);
-    const [showEditForm, setShowEditForm] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-    // Fetch products from API
     useEffect(() => {
-        axios.get("/api/products")
-            .then(response => setProducts(response.data))
-            .catch(error => console.error("Error fetching products:", error));
+        fetchProducts();
     }, []);
 
-    // Delete Product
-    const handleDelete = async (id) => {
+    const fetchProducts = async () => {
         try {
-            await axios.delete(`/api/products/${id}`);
-            setProducts(products.filter(product => product._id !== id));  // Remove from state
-            alert("Product deleted successfully!");
+            const response = await axios.get("http://localhost:5000/api/products");
+            setProducts(response.data);
         } catch (error) {
-            console.error("Error deleting product:", error);
+            console.error("Error fetching products:", error);
         }
     };
 
-    // Edit Product
     const handleEdit = (product) => {
-        setCurrentProduct(product);
-        setShowEditForm(true);
+        setSelectedProduct(product);
+        setActivePage("edit");
     };
 
     return (
-        <div className="manage-products">
-            <h2>Manage Products</h2>
-            <button className="add-btn" onClick={() => setShowAddForm(true)}>Add Product</button>
+        <div className="dashboard">
+            <nav className="navbar">
+                <h2>Manage Products</h2>
+                <button className="nav-btn" onClick={() => setActivePage("add")}>Add</button>
+                <button className="nav-btn" onClick={() => setActivePage("edit")}>Edit</button>
+                <button className="nav-btn" onClick={() => setActivePage("delete")}>Delete</button>
+                <button className="nav-btn" onClick={() => setActivePage("view")}>View</button>
+                <button className="nav-btn logout">Logout</button>
+            </nav>
 
-            {/* Show Add Product Form */}
-            {showAddForm && <AddProduct setShowAddForm={setShowAddForm} setProducts={setProducts} />}
-
-            {/* Show Edit Product Form */}
-            {showEditForm && <EditProduct product={currentProduct} setShowEditForm={setShowEditForm} setProducts={setProducts} />}
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product) => (
-                        <tr key={product._id}>
-                            <td>{product.name}</td>
-                            <td>{product.category}</td>
-                            <td>${product.price}</td>
-                            <td>{product.stock}</td>
-                            <td><img src={product.imageUrl} alt={product.name} width="50" /></td>
-                            <td>
-                                <button className="edit-btn" onClick={() => handleEdit(product)}>Edit</button>
-                                <button className="delete-btn" onClick={() => handleDelete(product._id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="content">
+                {activePage === "add" && <AddProduct />}
+                {activePage === "edit" && <EditProduct product={selectedProduct} />}
+                {activePage === "view" && (
+                    <div className="product-list">
+                        <h3>Product List</h3>
+                        {products.map((product) => (
+                            <div key={product._id} className="product-item">
+                                <h4>{product.name}</h4>
+                                <p>{product.description}</p>
+                                <button onClick={() => handleEdit(product)}>Edit</button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
