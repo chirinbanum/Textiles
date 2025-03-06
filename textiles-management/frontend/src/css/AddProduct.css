@@ -1,93 +1,45 @@
-/* Container for the form */
 .add-product-container {
-    max-width: 600px; /* Increased from 500px */
+    width: 50%;
     margin: auto;
     padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-/* Center align the title */
-h2 {
-    text-align: center;
-}
-
-/* Flexbox for Form Layout */
-.add-product-form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Form Field Styling */
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Input & Textarea Styling */
-input, textarea {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Align Upload Button to Right */
-.upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-/* Increased Table Width */
-.product-table {
-    width: 100%;
-    max-width: 800px; /* Increased */
-    margin: 15px auto; /* Centered */
-    border-collapse: collapse;
-}
-
-/* Table Cells */
-.product-table th, .product-table td {
     border: 1px solid #ddd;
-    padding: 12px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.add-product-container h2 {
     text-align: center;
 }
 
-/* Image Preview Styling */
-.image-preview {
-    width: 80px;
-    height: auto;
+.add-product-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-product-container label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.add-product-container input,
+.add-product-container textarea,
+.add-product-container select {
+    padding: 8px;
+    margin-top: 5px;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-/* Button Group */
-
-
-/* Logout Button */
-.btn-danger {
-    background: #dc3545;
+.add-product-container button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: blue;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.btn-danger:hover {
-    background: #b52b37;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .add-product-container {
-        max-width: 200%;
-    }
-    
-    .product-table {
-        font-size: 14px;
-    }
+.add-product-container button:hover {
+    background-color: darkblue;
 }

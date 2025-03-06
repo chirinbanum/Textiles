@@ -1,3 +1,14 @@
+body {
+  background-image: url('https://plus.unsplash.com/premium_photo-1661962552438-696871a2c7cc?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with the actual image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 .sidebar {
   width: 250px;
   background-color: #333;
@@ -11,11 +22,14 @@
 
 .sidebar h2 {
   text-align: center;
+  background-color: burlywood;
+
   margin-bottom: 20px;
 }
 
 .sidebar ul {
   list-style-type: none;
+  background-color: black;
   padding: 0;
 }
 
@@ -27,6 +41,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: burlywood;
+
 }
 
 .sidebar ul li:hover {
@@ -39,6 +55,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
+
 }
 
 /* Icon Styling */

@@ -38,6 +38,7 @@ const Signup = () => {
   };
 
   return (
+    <div className="signup">
     <div className="signup-container">
       <h2>Signup</h2>
       <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -48,6 +49,7 @@ const Signup = () => {
       </select>
       <button onClick={handleSignup}>Signup</button>
       <p onClick={() => navigate("/")}>You have an account? Login</p>
+    </div>
     </div>
   );
 };

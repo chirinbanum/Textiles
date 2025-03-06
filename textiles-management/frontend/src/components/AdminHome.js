@@ -27,8 +27,6 @@ const AdminHome = () => {
     <div className="admin-container">
       <Sidebar />
       <div className="admin-content">
-        <h2>Welcome to Admin Dashboard</h2>
-        <p>Manage products, users, orders, and more.</p>
         
         <button onClick={handleLogout} className="logout-button">
           Logout
